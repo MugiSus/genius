@@ -1,5 +1,9 @@
+:root {
+    --color-background: #c9c9c9;
+}
+
 html, body{
-    background: #c9c9c9;
+    background: var(--color-background);
     user-select: none;
 }
 
@@ -15,7 +19,17 @@ html, body{
 
 .row-container {
     display: flex;
+    justify-content: center;
+    align-items: center;
     gap: 0.5rem;
+}
+
+.non-element {
+    font-family: "HelveticaNeue-CondensedBold";
+    font-weight: 900;
+    font-size: 3.5rem;
+    letter-spacing: 0.1rem;
+    color: #a0a0a0;
 }
 
 .element {
