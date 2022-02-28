@@ -1,0 +1,67 @@
+html, body{
+    margin: 0;
+    padding: 0;
+    font-stretch: condensed;
+    background: #c9c9c9;
+}
+
+.colmun-container{
+    margin: 3rem 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    gap: 0.5rem;
+}
+
+.row-container {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.element {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 8.5rem;
+    height: 12rem;
+    border: #ffffff solid 10px;
+    color: #ffffff;
+}
+
+.element > .symbol {
+    font-family: "HelveticaNeue-CondensedBold";
+    font-weight: 800;
+    font-size: 6.2rem;
+    font-weight: bold;
+    line-height: 5.5rem;
+}
+
+.element.singleletter > .symbol {
+    transform: scaleX(120%);
+}
+
+.element > .number {
+    font-family: "HelveticaNeue";
+    font-weight: 800;
+    font-size: 2rem;
+    line-height: 2.2rem;
+}
+
+.element > .weight {
+    font-family: "HelveticaNeue";
+    font-weight: 800;
+    font-size: 1.6rem;
+    line-height: 1.8rem;
+}
+
+.element > .name {
+    font-family: "HelveticaNeue-CondensedBlack";
+    font-weight: 900;
+    font-size: 1.6rem;
+    transform: scaleX(80%);
+    line-height: 2rem;
+    letter-spacing: 0.04rem;
+}
