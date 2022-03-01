@@ -58,6 +58,7 @@ html, body{
 
 .element.singleletter > .symbol {
     transform: scaleX(120%);
+    -webkit-transform: scaleX(120%);
 }
 
 .element > .number {
@@ -81,6 +82,7 @@ html, body{
     font-weight: 900;
     font-size: 1.6rem;
     transform: scaleX(80%);
+    -webkit-transform: scaleX(80%);
     line-height: 2rem;
     letter-spacing: 0.04rem;
 }
@@ -95,10 +97,28 @@ html, body{
     width: 80%;
     max-width: 25rem;
     height: 6rem;
-    margin-bottom: 2rem;
+    margin-bottom: 1rem;
     padding: 0.5rem;
     background-color: #a8a8a8;
     border: #808080 solid 1px;
     color: #ffffff;
     resize: none;
+}
+
+#main-textarea:focus {
+    outline: none;
+}
+
+#font-information {
+    font-family: "Inconsolata";
+    color: #808080;
+    font-weight: 500;
+    font-stretch: 120%;
+    margin-bottom: 1rem;
+    font-size: 1rem;
+    line-height: 1.5rem;
+}
+
+#font-information a {
+    color : inherit;
 }
