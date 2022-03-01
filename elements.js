@@ -9,7 +9,17 @@ class Element {
     }
 }
 
-const Elements = [
+class ElementsTable {
+    constructor(...elements) {
+        this.elements = elements;
+    }
+
+    findSymbol(symbol) {
+        return this.elements.find(element => element.symbol.toLowerCase() == symbol.toLowerCase());
+    }
+}
+
+const Elements = new ElementsTable(
     new Element("Hydrogen", "H", 1, 1.00794, 1, 1),
     new Element("Helium", "He", 2, 4.002602, 18, 1),
     new Element("Lithium", "Li", 3, 6.941, 1, 2),
@@ -128,5 +138,5 @@ const Elements = [
     new Element("Livermorium", "Lv", 116, 293, 16, 9),
     new Element("Tennessine", "Ts", 117, 294, 17, 9),
     new Element("Oganesson", "Og", 118, 294, 18, 9),
-]
+)
 
