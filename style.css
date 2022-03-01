@@ -57,8 +57,8 @@ html, body{
 }
 
 .element.singleletter > .symbol {
-    transform: scaleX(120%);
-    -webkit-transform: scaleX(120%);
+    transform: scaleX(1.2);
+    -webkit-transform: scaleX(1.2);
 }
 
 .element > .number {
@@ -81,8 +81,8 @@ html, body{
     font-family: "HelveticaNeue-CondensedBlack";
     font-weight: 900;
     font-size: 1.6rem;
-    transform: scaleX(80%);
-    -webkit-transform: scaleX(80%);
+    transform: scaleX(0.8);
+    -webkit-transform: scaleX(0.8);
     line-height: 2rem;
     letter-spacing: 0.04rem;
 }
