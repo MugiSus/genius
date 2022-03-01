@@ -19,11 +19,12 @@ function generate(text) {
             if (chars[i + 1] && Elements.findSymbol(chars[i] + chars[i + 1])) {
                 chars[i] = chars[i] + chars[i + 1];
                 chars.splice(i + 1, 1);
-            } else if (chars[i - 1] && !Elements.findSymbol(chars[i]) && Elements.findSymbol(chars[i - 1][1] + chars[i])) {
+            } else if (chars[i - 1] && Elements.findSymbol(chars[i - 1][0]) && Elements.findSymbol(chars[i - 1][1] + chars[i])) {
                 chars[i] = chars[i - 1][1] + chars[i];
                 chars[i - 1] = chars[i - 1][0];
             }
         }
+        console.log(chars)
 
         chars.forEach(char => {
             const foundElement = Elements.findSymbol(char);
