@@ -4,7 +4,7 @@ const containerElement = document.getElementsByClassName('container')[0];
 const rowContainerElement = document.querySelector(".shadow .row-container");
 const elementElement = document.querySelector(".shadow .element");
 
-mainTextarea.value = localStorage.getItem("mainTextarea") ?? "Generate\nOwn\nGenius";
+mainTextarea.value = localStorage.getItem("mainTextarea") || "Generate\nOwn\nGenius";
 
 function generate(text) {
     while (containerElement.firstChild)
