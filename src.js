@@ -4,7 +4,7 @@ const containerElement = document.getElementsByClassName('container')[0];
 const rowContainerElement = document.querySelector(".shadow .row-container");
 const elementElement = document.querySelector(".shadow .element");
 
-mainTextarea.value = "Generate\nOwn\nGenius";
+mainTextarea.value = localStorage.getItem("mainTextarea") ?? "Generate\nOwn\nGenius";
 
 function generate(text) {
     while (containerElement.firstChild)
@@ -40,4 +40,7 @@ function generate(text) {
 
 generate(mainTextarea.value);
 
-mainTextarea.addEventListener("input", event => generate(event.target.value));
+mainTextarea.addEventListener("input", event => {
+    localStorage.setItem("mainTextarea", mainTextarea.value);
+    generate(event.target.value)
+});
