@@ -30,12 +30,12 @@ function generate(text) {
             const foundElement = Elements.findSymbol(char);
             if (foundElement) {
                 const curElementElem = curRowContElem.appendChild(elementElement.cloneNode(true));
+                if (foundElement.symbol.length == 1)
+                    curElementElem.classList.add("singleletter");
                 curElementElem.getElementsByClassName("symbol")[0].textContent = foundElement.symbol;
                 curElementElem.getElementsByClassName("number")[0].textContent = foundElement.number;
                 curElementElem.getElementsByClassName("weight")[0].textContent = foundElement.weight.toFixed(2);
                 curElementElem.getElementsByClassName("name")[0].textContent = foundElement.name.toUpperCase();
-                if (foundElement.symbol.length == 1)
-                    curElementElem.classList.add("singleletter");
             }
         })
     })
