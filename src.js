@@ -6,6 +6,16 @@ const elementElement = document.querySelector(".shadow .element");
 
 mainTextarea.value = localStorage.getItem("mainTextarea") || "Generate\nOwn\nGenius";
 
+function getElementsText(text, symbolsArr = [], nonSymbolsCount = 0) {
+    if (text.length == 0)
+        return {symbolsArr: symbolsArr, nonSymbolsCount: nonSymbolsCount};
+    let oneLetterSymbolResult, twoLetterSymbolResult;
+    if (Elements.findSymbol(text[0] + text[1])) 
+        twoLetterSymbolResult = getElementsText(text.slice(2), [...symbolsArr, text[0] + text[1]], nonSymbolsCount);
+    oneLetterSymbolResult = getElementsText(text.slice(1), [...symbolsArr, text[0]], nonSymbolsCount + !Elements.findSymbol(text[0]));
+    return twoLetterSymbolResult && twoLetterSymbolResult.nonSymbolsCount <= oneLetterSymbolResult.nonSymbolsCount ? twoLetterSymbolResult : oneLetterSymbolResult;
+}
+
 function generate(text) {
     while (containerElement.firstChild)
         containerElement.removeChild(containerElement.firstChild);
@@ -14,19 +24,7 @@ function generate(text) {
     lines.forEach(line => {
         const curRowContElem = containerElement.appendChild(rowContainerElement.cloneNode(true));
 
-        let chars = line.split('');
-        for (let i = 0; i < chars.length; i++) {
-            if (chars[i + 1] && Elements.findSymbol(chars[i] + chars[i + 1])) {
-                chars[i] = chars[i] + chars[i + 1];
-                chars.splice(i + 1, 1);
-            } else if (chars[i - 1] && Elements.findSymbol(chars[i - 1][0]) && Elements.findSymbol(chars[i - 1][1] + chars[i])) {
-                chars[i] = chars[i - 1][1] + chars[i];
-                chars[i - 1] = chars[i - 1][0];
-            }
-        }
-        console.log(chars)
-
-        chars.forEach(char => {
+        getElementsText(line).symbolsArr.forEach(char => {
             const foundElement = Elements.findSymbol(char);
             if (foundElement) {
                 const curElementElem = curRowContElem.appendChild(elementElement.cloneNode(true));

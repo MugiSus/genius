@@ -47,7 +47,7 @@ html, body{
     justify-content: center;
     width: 8.5rem;
     height: 12rem;
-    border: var(--col-front) solid 10px;
+    border: var(--col-front) solid 0.6rem;
     color: var(--col-front);
 }
 
