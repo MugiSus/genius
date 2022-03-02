@@ -32,7 +32,7 @@ html, body{
 }
 
 .non-element {
-    font-family: "HelveticaNeue-CondensedBold";
+    font-family: "HelveticaNeue-CondensedBold", sans-serif;
     font-weight: 900;
     font-size: 3.5rem;
     line-height: 5rem;
@@ -52,7 +52,7 @@ html, body{
 }
 
 .element > .symbol {
-    font-family: "HelveticaNeue-CondensedBold";
+    font-family: "HelveticaNeue-CondensedBold", sans-serif;
     font-weight: 800;
     font-size: 6.2rem;
     font-weight: bold;
@@ -65,7 +65,7 @@ html, body{
 }
 
 .element > .number {
-    font-family: "HelveticaNeue";
+    font-family: "HelveticaNeue", sans-serif;
     font-weight: 800;
     font-size: 2rem;
     line-height: 2.2rem;
@@ -73,7 +73,7 @@ html, body{
 }
 
 .element > .weight {
-    font-family: "HelveticaNeue";
+    font-family: "HelveticaNeue", sans-serif;
     font-weight: 800;
     font-size: 1.6rem;
     line-height: 1.8rem;
@@ -81,7 +81,7 @@ html, body{
 }
 
 .element > .name {
-    font-family: "HelveticaNeue-CondensedBlack";
+    font-family: "HelveticaNeue-CondensedBlack", sans-serif;
     font-weight: 900;
     font-size: 1.6rem;
     transform: scaleX(0.8);
