@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inconsolata:wdth,wght@120,500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inconsolata:wdth,wght@120,350;120,450;120,700&display=swap');
 
 :root {
     --col-background: #c4c4c4;
@@ -92,7 +92,7 @@ html, body{
 
 #main-textarea {
     font-family: "Inconsolata";
-    font-weight: 500;
+    font-weight: 450;
     font-stretch: 120%;
     text-align: center;
     font-size: 1.5rem;
@@ -115,7 +115,7 @@ html, body{
 #font-information {
     font-family: "Inconsolata";
     color: var(--col-dimmed-dark);
-    font-weight: 500;
+    font-weight: 350;
     font-stretch: 120%;
     width: 75%;
     margin: 2rem auto 4rem;
