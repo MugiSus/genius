@@ -6,14 +6,33 @@ const elementElement = document.querySelector(".shadow .element");
 
 mainTextarea.value = localStorage.getItem("mainTextarea") || "Generate\nOwn\nGenius";
 
-function getElementsText(text, symbolsArr = [], nonSymbolsCount = 0) {
-    if (text.length == 0)
-        return {symbolsArr: symbolsArr, nonSymbolsCount: nonSymbolsCount};
-    let oneLetterSymbolResult, twoLetterSymbolResult;
-    if (Elements.findSymbol(text[0] + text[1])) 
-        twoLetterSymbolResult = getElementsText(text.slice(2), [...symbolsArr, text[0] + text[1]], nonSymbolsCount);
-    oneLetterSymbolResult = getElementsText(text.slice(1), [...symbolsArr, text[0]], nonSymbolsCount + !Elements.findSymbol(text[0]));
-    return twoLetterSymbolResult && twoLetterSymbolResult.nonSymbolsCount <= oneLetterSymbolResult.nonSymbolsCount ? twoLetterSymbolResult : oneLetterSymbolResult;
+function getElementsTextDP(text) { // Dynamic Programming
+    let dp = {};
+    let getElementsText = (text) => {
+        if (dp[text]) 
+            return dp[text];
+        
+        if (text.length == 0)
+            return dp[text] = {
+                symbolsArr: [],
+                nonSymbolsCount: 0
+            };
+        
+        let twoLetterSymbolResult = text[1] && Elements.findSymbol(text[0] + text[1]) && getElementsText(text.slice(2));
+        let oneLetterSymbolResult = getElementsText(text.slice(1));
+        
+        if (twoLetterSymbolResult && twoLetterSymbolResult.nonSymbolsCount <= oneLetterSymbolResult.nonSymbolsCount)
+            return dp[text] = {
+                symbolsArr: [text[0] + text[1], ...twoLetterSymbolResult.symbolsArr],
+                nonSymbolsCount: twoLetterSymbolResult.nonSymbolsCount
+            }
+        else
+            return dp[text] = {
+                symbolsArr: [text[0], ...oneLetterSymbolResult.symbolsArr],
+                nonSymbolsCount: oneLetterSymbolResult.nonSymbolsCount + !Elements.findSymbol(text[0])
+            }
+    }
+    return getElementsText(text);
 }
 
 function generate(text) {
@@ -24,7 +43,7 @@ function generate(text) {
     lines.forEach(line => {
         const curRowContElem = containerElement.appendChild(rowContainerElement.cloneNode(true));
 
-        getElementsText(line).symbolsArr.forEach(char => {
+        getElementsTextDP(line).symbolsArr.forEach(char => {
             const foundElement = Elements.findSymbol(char);
             if (foundElement) {
                 const curElementElem = curRowContElem.appendChild(elementElement.cloneNode(true));
