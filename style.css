@@ -1,11 +1,14 @@
 @import url('https://fonts.googleapis.com/css2?family=Inconsolata:wdth,wght@120,500&display=swap');
 
 :root {
-    --color-background: #c4c4c4;
+    --col-background: #c4c4c4;
+    --col-front: #ffffff;
+    --col-dimmed-dark: #808080;
+    --col-dimmed-light: #a8a8a8;
 }
 
 html, body{
-    background: var(--color-background);
+    background: var(--col-background);
     user-select: none;
     text-align: center;
 }
@@ -44,8 +47,8 @@ html, body{
     justify-content: center;
     width: 8.5rem;
     height: 12rem;
-    border: #ffffff solid 10px;
-    color: #ffffff;
+    border: var(--col-front) solid 10px;
+    color: var(--col-front);
 }
 
 .element > .symbol {
@@ -99,9 +102,9 @@ html, body{
     height: 6rem;
     margin-bottom: 1rem;
     padding: 0.5rem;
-    background-color: #a8a8a8;
-    border: #808080 solid 1px;
-    color: #ffffff;
+    background-color: var(--col-dimmed-light);
+    border: var(--col-dimmed-dark) solid 1px;
+    color: var(--col-front);
     resize: none;
 }
 
@@ -111,14 +114,14 @@ html, body{
 
 #font-information {
     font-family: "Inconsolata";
-    color: #808080;
+    color: var(--col-dimmed-dark);
     font-weight: 500;
     font-stretch: 120%;
     margin: 2rem 0 4rem;
-    font-size: 1rem;
-    line-height: 1.5rem;
+    font-size: 1.2rem;
+    line-height: 1.6rem;
 }
 
 #font-information a {
-    color : inherit;
+    color: inherit;
 }

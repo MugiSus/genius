@@ -34,6 +34,8 @@ function generate(text) {
                 curElementElem.getElementsByClassName("number")[0].textContent = foundElement.number;
                 curElementElem.getElementsByClassName("weight")[0].textContent = foundElement.weight.toFixed(2);
                 curElementElem.getElementsByClassName("name")[0].textContent = foundElement.name.toUpperCase();
+                if (foundElement.symbol.length == 1)
+                    curElementElem.classList.add("singleletter");
             }
         })
     })
