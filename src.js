@@ -11,26 +11,23 @@ function getElementsTextDP(text) { // Dynamic Programming
     let getElementsText = (text) => {
         if (dp[text]) 
             return dp[text];
-        
         if (text.length == 0)
             return dp[text] = {
-                symbolsArr: [],
-                nonSymbolsCount: 0
+                symbols: [],
+                nonSymbolsCtr: 0
             };
-        
-        let twoLetterSymbolResult = text[1] && Elements.findSymbol(text[0] + text[1]) && getElementsText(text.slice(2));
-        let oneLetterSymbolResult = getElementsText(text.slice(1));
-        
-        if (twoLetterSymbolResult && twoLetterSymbolResult.nonSymbolsCount <= oneLetterSymbolResult.nonSymbolsCount)
+        let twoLetters = text[1] && Elements.findSymbol(text[0] + text[1]) && getElementsText(text.slice(2));
+        let oneLetter = getElementsText(text.slice(1));
+        if (twoLetters && twoLetters.nonSymbolsCtr <= oneLetter.nonSymbolsCtr)
             return dp[text] = {
-                symbolsArr: [text[0] + text[1], ...twoLetterSymbolResult.symbolsArr],
-                nonSymbolsCount: twoLetterSymbolResult.nonSymbolsCount
-            }
+                symbols: [text[0] + text[1], ...twoLetters.symbols],
+                nonSymbolsCtr: twoLetters.nonSymbolsCtr
+            };
         else
             return dp[text] = {
-                symbolsArr: [text[0], ...oneLetterSymbolResult.symbolsArr],
-                nonSymbolsCount: oneLetterSymbolResult.nonSymbolsCount + !Elements.findSymbol(text[0])
-            }
+                symbols: [text[0], ...oneLetter.symbols],
+                nonSymbolsCtr: oneLetter.nonSymbolsCtr + !Elements.findSymbol(text[0])
+            };
     }
     return getElementsText(text);
 }
@@ -43,7 +40,7 @@ function generate(text) {
     lines.forEach(line => {
         const curRowContElem = containerElement.appendChild(rowContainerElement.cloneNode(true));
 
-        getElementsTextDP(line).symbolsArr.forEach(char => {
+        getElementsTextDP(line).symbols.forEach(char => {
             const foundElement = Elements.findSymbol(char);
             if (foundElement) {
                 const curElementElem = curRowContElem.appendChild(elementElement.cloneNode(true));
