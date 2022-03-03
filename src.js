@@ -10,7 +10,7 @@ mainTextarea.value = localStorage.getItem("mainTextarea") || "Generate\nOwn\nGen
 function getElementsTextDP(text) {
     const dp = new Map();
     const getElementsText = (text) => {
-        if (dp.get(text))
+        if (dp.has(text))
             return dp.get(text);
         if (text.length == 0)
             return dp.set(text, {
