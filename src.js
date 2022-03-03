@@ -8,8 +8,8 @@ mainTextarea.value = localStorage.getItem("mainTextarea") || "Generate\nOwn\nGen
 
 // Dynamic Programming
 function getElementsTextDP(text) {
-    let dp = new Map();
-    let getElementsText = (text) => {
+    const dp = new Map();
+    const getElementsText = (text) => {
         if (dp.get(text))
             return dp.get(text);
         if (text.length == 0)
@@ -17,8 +17,8 @@ function getElementsTextDP(text) {
                 symbols: [],
                 nonSymbolsCtr: 0
             }).get(text);
-        let twoLetters = text[1] && Elements.findSymbol(text[0] + text[1]) && getElementsText(text.slice(2));
-        let oneLetter = getElementsText(text.slice(1));
+        const twoLetters = text[1] && Elements.findSymbol(text[0] + text[1]) && getElementsText(text.slice(2));
+        const oneLetter = getElementsText(text.slice(1));
         if (twoLetters && twoLetters.nonSymbolsCtr <= oneLetter.nonSymbolsCtr)
             return dp.set(text, {
                 symbols: [text[0] + text[1], ...twoLetters.symbols],
