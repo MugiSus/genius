@@ -6,28 +6,29 @@ const elementElement = document.querySelector(".shadow .element");
 
 mainTextarea.value = localStorage.getItem("mainTextarea") || "Generate\nOwn\nGenius";
 
-function getElementsTextDP(text) { // Dynamic Programming
-    let dp = {};
+// Dynamic Programming
+function getElementsTextDP(text) {
+    let dp = new Map();
     let getElementsText = (text) => {
-        if (dp[text]) 
-            return dp[text];
+        if (dp.get(text))
+            return dp.get(text);
         if (text.length == 0)
-            return dp[text] = {
+            return dp.set(text, {
                 symbols: [],
                 nonSymbolsCtr: 0
-            };
+            }).get(text);
         let twoLetters = text[1] && Elements.findSymbol(text[0] + text[1]) && getElementsText(text.slice(2));
         let oneLetter = getElementsText(text.slice(1));
         if (twoLetters && twoLetters.nonSymbolsCtr <= oneLetter.nonSymbolsCtr)
-            return dp[text] = {
+            return dp.set(text, {
                 symbols: [text[0] + text[1], ...twoLetters.symbols],
                 nonSymbolsCtr: twoLetters.nonSymbolsCtr
-            };
+            }).get(text);
         else
-            return dp[text] = {
+            return dp.set(text, {
                 symbols: [text[0], ...oneLetter.symbols],
                 nonSymbolsCtr: oneLetter.nonSymbolsCtr + !Elements.findSymbol(text[0])
-            };
+            }).get(text);
     }
     return getElementsText(text);
 }
