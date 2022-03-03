@@ -17,15 +17,17 @@ function getElementsTextDP(text) {
                 symbols: [],
                 nonSymbolsCtr: 0
             }).get(text);
-        const twoLetters = text[1] && Elements.findSymbol(text[0] + text[1]) && getElementsText(text.slice(2));
-        const oneLetter = getElementsText(text.slice(1));
+        const [twoLetters, oneLetter] = [
+            text[1] && Elements.findSymbol(text[0] + text[1]) && getElementsText(text.slice(2)),
+            getElementsText(text.slice(1))
+        ]
         return dp.set(text, 
             twoLetters && oneLetter.nonSymbolsCtr >= twoLetters.nonSymbolsCtr ? {
                 symbols: [text[0] + text[1], ...twoLetters.symbols],
                 nonSymbolsCtr: twoLetters.nonSymbolsCtr
             } : {
                 symbols: [text[0], ...oneLetter.symbols],
-                nonSymbolsCtr: oneLetter.nonSymbolsCtr
+                nonSymbolsCtr: oneLetter.nonSymbolsCtr + !Elements.findSymbol(text[0])
             }
         ).get(text);
     }
