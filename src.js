@@ -19,16 +19,15 @@ function getElementsTextDP(text) {
             }).get(text);
         const twoLetters = text[1] && Elements.findSymbol(text[0] + text[1]) && getElementsText(text.slice(2));
         const oneLetter = getElementsText(text.slice(1));
-        if (twoLetters && twoLetters.nonSymbolsCtr <= oneLetter.nonSymbolsCtr)
-            return dp.set(text, {
+        return dp.set(text, 
+            twoLetters && oneLetter.nonSymbolsCtr >= twoLetters.nonSymbolsCtr ? {
                 symbols: [text[0] + text[1], ...twoLetters.symbols],
                 nonSymbolsCtr: twoLetters.nonSymbolsCtr
-            }).get(text);
-        else
-            return dp.set(text, {
+            } : {
                 symbols: [text[0], ...oneLetter.symbols],
-                nonSymbolsCtr: oneLetter.nonSymbolsCtr + !Elements.findSymbol(text[0])
-            }).get(text);
+                nonSymbolsCtr: oneLetter.nonSymbolsCtr
+            }
+        ).get(text);
     }
     return getElementsText(text);
 }
