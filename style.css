@@ -100,7 +100,7 @@ html, body{
     width: 80%;
     max-width: 25rem;
     height: 6rem;
-    margin-bottom: 1rem;
+    margin-bottom: 2rem;
     padding: 0.5rem;
     background-color: var(--col-dimmed-light);
     border: var(--col-dimmed-dark) solid 1px;
@@ -112,17 +112,17 @@ html, body{
     outline: none;
 }
 
-#font-information {
+.description {
     font-family: "Inconsolata";
     color: var(--col-dimmed-dark);
     font-weight: 350;
     font-stretch: 120%;
     width: 75%;
-    margin: 2rem auto 4rem;
+    margin: 1.5rem auto;
     font-size: 1.2rem;
     line-height: 1.6rem;
 }
 
-#font-information a {
+.description a {
     color: inherit;
 }
