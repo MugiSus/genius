@@ -18,14 +18,14 @@ function getElementsTextDP(text) {
                 nonSymbolsCtr: 0
             }).get(text);
         const oneLetter = getElementsText(text.slice(1));
-        const twoLetters = text[1] && Elements.findSymbol(text[0] + text[1]) && getElementsText(text.slice(2));
+        const twoLetters = text[1] && Elements.hasSymbol(text[0] + text[1]) && getElementsText(text.slice(2));
         return dp.set(text, 
             twoLetters && oneLetter.nonSymbolsCtr >= twoLetters.nonSymbolsCtr ? {
                 symbols: [text[0] + text[1], ...twoLetters.symbols],
                 nonSymbolsCtr: twoLetters.nonSymbolsCtr
             } : {
                 symbols: [text[0], ...oneLetter.symbols],
-                nonSymbolsCtr: oneLetter.nonSymbolsCtr + !Elements.findSymbol(text[0])
+                nonSymbolsCtr: oneLetter.nonSymbolsCtr + !Elements.hasSymbol(text[0])
             }
         ).get(text);
     }
