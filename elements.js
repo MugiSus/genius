@@ -17,6 +17,10 @@ class ElementsTable {
     findSymbol(symbol) {
         return this.elements.find(element => element.symbol.toLowerCase() == symbol.toLowerCase());
     }
+
+    hasSymbol(symbol) {
+        return this.elements.some(element => element.symbol.toLowerCase() == symbol.toLowerCase());
+    }
 }
 
 const Elements = new ElementsTable(

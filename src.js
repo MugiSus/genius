@@ -6,31 +6,28 @@ const elementElement = document.querySelector(".shadow .element");
 
 mainTextarea.value = localStorage.getItem("mainTextarea") || "Generate\nOwn\nGenius";
 
-function getElementsTextDP(text) { // Dynamic Programming
-    let dp = {};
-    let getElementsText = (text) => {
-        if (dp[text]) 
-            return dp[text];
-        
+// Dynamic Programming
+function getElementsTextDP(text) {
+    const dp = new Map();
+    const getElementsText = (text) => {
+        if (dp.has(text))
+            return dp.get(text);
         if (text.length == 0)
-            return dp[text] = {
-                symbolsArr: [],
-                nonSymbolsCount: 0
-            };
-        
-        let twoLetterSymbolResult = text[1] && Elements.findSymbol(text[0] + text[1]) && getElementsText(text.slice(2));
-        let oneLetterSymbolResult = getElementsText(text.slice(1));
-        
-        if (twoLetterSymbolResult && twoLetterSymbolResult.nonSymbolsCount <= oneLetterSymbolResult.nonSymbolsCount)
-            return dp[text] = {
-                symbolsArr: [text[0] + text[1], ...twoLetterSymbolResult.symbolsArr],
-                nonSymbolsCount: twoLetterSymbolResult.nonSymbolsCount
+            return dp.set(text, {
+                symbols: [],
+                nonSymbolsCtr: 0
+            }).get(text);
+        const oneLetter = getElementsText(text.slice(1));
+        const twoLetters = text[1] && Elements.hasSymbol(text[0] + text[1]) && getElementsText(text.slice(2));
+        return dp.set(text, 
+            twoLetters && oneLetter.nonSymbolsCtr >= twoLetters.nonSymbolsCtr ? {
+                symbols: [text[0] + text[1], ...twoLetters.symbols],
+                nonSymbolsCtr: twoLetters.nonSymbolsCtr
+            } : {
+                symbols: [text[0], ...oneLetter.symbols],
+                nonSymbolsCtr: oneLetter.nonSymbolsCtr + !Elements.hasSymbol(text[0])
             }
-        else
-            return dp[text] = {
-                symbolsArr: [text[0], ...oneLetterSymbolResult.symbolsArr],
-                nonSymbolsCount: oneLetterSymbolResult.nonSymbolsCount + !Elements.findSymbol(text[0])
-            }
+        ).get(text);
     }
     return getElementsText(text);
 }
@@ -43,7 +40,7 @@ function generate(text) {
     lines.forEach(line => {
         const curRowContElem = containerElement.appendChild(rowContainerElement.cloneNode(true));
 
-        getElementsTextDP(line).symbolsArr.forEach(char => {
+        getElementsTextDP(line).symbols.forEach(char => {
             const foundElement = Elements.findSymbol(char);
             if (foundElement) {
                 const curElementElem = curRowContElem.appendChild(elementElement.cloneNode(true));
